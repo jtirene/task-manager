@@ -1,11 +1,12 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@task-manager/core/*": ["../core/src/*"]
-    }
-  }
+	"extends": "@tsconfig/node18/tsconfig.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"@task-manager/core/*": ["../core/src/*"]
+		},
+		"strict": true
+	}
 }

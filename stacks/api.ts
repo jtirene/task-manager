@@ -3,7 +3,8 @@ import { Api, StackContext } from 'sst/constructs'
 export function API({ stack }: StackContext) {
 	const api = new Api(stack, 'api', {
 		routes: {
-			'GET /': 'packages/functions/src/lambda.handler',
+			'GET /trpc/{proxy+}': 'packages/functions/src/trpc.handler',
+			'POST /trpc/{proxy+}': 'packages/functions/src/trpc.handler',
 		},
 	})
 

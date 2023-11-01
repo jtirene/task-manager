@@ -1,17 +1,19 @@
 {
-  "name": "@task-manager/core",
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "test": "sst bind vitest",
-    "typecheck": "tsc -noEmit"
-  },
-  "devDependencies": {
-    "vitest": "^0.34.6",
-    "@types/node": "^20.8.9",
-    "sst": "^2.32.2"
-  },
-  "dependencies": {
-    "zod": "^3.22.4"
-  }
+	"name": "@task-manager/core",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"test": "sst bind vitest",
+		"typecheck": "tsc -noEmit"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "^8.10.125",
+		"@types/node": "^20.8.9",
+		"sst": "^2.32.2",
+		"vitest": "^0.34.6"
+	},
+	"dependencies": {
+		"@trpc/server": "^10.43.0",
+		"zod": "^3.22.4"
+	}
 }
