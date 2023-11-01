@@ -32,7 +32,8 @@
 		"packages/web/package.json": true,
 		"packages/web/tsconfig.json": true,
 		"packages/web/tsconfig.node.json": true,
-		"packages/web/vite.config.ts": true
+		"packages/web/vite.config.ts": true,
+		"packages/web/dist": true
 	},
 	"explorerExclude.backup": {}
 }
