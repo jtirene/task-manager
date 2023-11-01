@@ -1,5 +1,38 @@
 {
-  "search.exclude": {
-    "**/.sst": true
-  }
+	"search.exclude": {
+		"**/.sst": true
+	},
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		".prettierrc": true,
+		".gitignore": true,
+		"pnpm-lock.yaml": true,
+		"pnpm-workspace.yaml": true,
+		"package.json": true,
+		"tsconfig.json": true,
+		"node_modules": true,
+		".vscode": true,
+		".sst": true,
+		"packages/core/node_modules": true,
+		"packages/core/package.json": true,
+		"packages/core/sst-env.d.ts": true,
+		"packages/core/tsconfig.json": true,
+		"packages/functions/node_modules": true,
+		"packages/functions/package.json": true,
+		"packages/functions/tsconfig.json": true,
+		"packages/functions/sst-env.d.ts": true,
+		"packages/web/node_modules": true,
+		"packages/web/.eslintrc.cjs": true,
+		"packages/web/.gitignore": true,
+		"packages/web/package.json": true,
+		"packages/web/tsconfig.json": true,
+		"packages/web/tsconfig.node.json": true,
+		"packages/web/vite.config.ts": true
+	},
+	"explorerExclude.backup": {}
 }
