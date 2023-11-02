@@ -23,6 +23,8 @@ function App() {
 	)
 
 	return (
+		// https://github.com/TanStack/query/issues/6186
+		// @ts-ignore
 		<trpc.Provider client={trpcClient} queryClient={queryClient}>
 			<QueryClientProvider client={queryClient}>
 				<Routes />
