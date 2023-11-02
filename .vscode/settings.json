@@ -33,7 +33,9 @@
 		"packages/web/tsconfig.json": true,
 		"packages/web/tsconfig.node.json": true,
 		"packages/web/vite.config.ts": true,
-		"packages/web/dist": true
+		"packages/web/dist": true,
+		"packages/web/postcss.config.js": true,
+		"packages/web/tailwind.config.js": true
 	},
 	"explorerExclude.backup": {}
 }

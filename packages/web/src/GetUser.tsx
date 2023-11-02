@@ -1,4 +1,4 @@
-import { trpc } from './utils/trpc'
+import { trpc } from './util/trpc'
 
 export const GetUser = () => {
 	const getUser = trpc.getUser.useQuery()
