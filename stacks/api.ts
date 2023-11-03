@@ -2,7 +2,7 @@ import { Api, StackContext, use } from 'sst/constructs'
 import { Database } from './database'
 
 export function API({ stack }: StackContext) {
-	const { DATABASE_USERNAME, DATABASE_PASSWORD } = use(Database)
+	const { DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD } = use(Database)
 
 	const api = new Api(stack, 'api', {
 		routes: {
@@ -11,7 +11,7 @@ export function API({ stack }: StackContext) {
 		},
 		defaults: {
 			function: {
-				bind: [DATABASE_USERNAME, DATABASE_PASSWORD],
+				bind: [DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD],
 			},
 		},
 	})
