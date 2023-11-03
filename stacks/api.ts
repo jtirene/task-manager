@@ -6,8 +6,8 @@ export function API({ stack }: StackContext) {
 
 	const api = new Api(stack, 'api', {
 		routes: {
-			'GET /trpc/{proxy+}': 'packages/functions/src/trpc.handler',
-			'POST /trpc/{proxy+}': 'packages/functions/src/trpc.handler',
+			'GET /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
+			'POST /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
 		},
 		defaults: {
 			function: {

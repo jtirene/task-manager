@@ -1,5 +1,6 @@
 import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda'
-import { appRouter, createContext } from '../../core/src/trpc'
+import { createContext } from './context'
+import { appRouter } from './router'
 
 export const handler = awsLambdaRequestHandler({
 	router: appRouter,
