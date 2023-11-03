@@ -35,7 +35,9 @@
 		"packages/web/vite.config.ts": true,
 		"packages/web/dist": true,
 		"packages/web/postcss.config.js": true,
-		"packages/web/tailwind.config.js": true
+		"packages/web/tailwind.config.js": true,
+		"packages/web/src/sst-env.d.ts": true,
+		"packages/web/src/vite-env.d.ts": true
 	},
 	"explorerExclude.backup": {}
 }

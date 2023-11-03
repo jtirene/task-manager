@@ -1,5 +1,6 @@
 import { SSTConfig } from 'sst'
 import { API } from './stacks/api'
+import { Database } from './stacks/database'
 import { Site } from './stacks/site'
 
 export default {
@@ -10,6 +11,7 @@ export default {
 		}
 	},
 	stacks(app) {
+		app.stack(Database)
 		app.stack(API)
 		app.stack(Site)
 	},

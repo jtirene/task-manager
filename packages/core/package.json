@@ -4,16 +4,21 @@
 	"type": "module",
 	"scripts": {
 		"test": "sst bind vitest",
-		"typecheck": "tsc -noEmit"
+		"typecheck": "tsc -noEmit",
+		"db:generate": "sst bind drizzle-kit generate:mysql",
+		"db:push": "sst bind drizzle-kit push:mysql"
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8.10.125",
 		"@types/node": "^20.8.9",
+		"drizzle-kit": "^0.19.13",
 		"sst": "^2.32.2",
 		"vitest": "^0.34.6"
 	},
 	"dependencies": {
+		"@planetscale/database": "^1.11.0",
 		"@trpc/server": "^10.43.0",
+		"drizzle-orm": "^0.28.6",
 		"zod": "^3.22.4"
 	}
 }
