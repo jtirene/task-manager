@@ -1,8 +1,8 @@
 import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
 import { cuid, timestamps } from '../util/sql'
 
-export const lists = mysqlTable(
-	'tm_lists',
+export const taskLists = mysqlTable(
+	'tm_task_lists',
 	{
 		listId: cuid('list_id').notNull(),
 		ownerId: cuid('owner_id').notNull(),

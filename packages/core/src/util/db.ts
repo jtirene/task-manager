@@ -1,11 +1,11 @@
 import { connect } from '@planetscale/database'
 import { drizzle } from 'drizzle-orm/planetscale-serverless'
-import { Config } from 'sst/node/config'
+import { DATABASE_PASSWORD, DATABASE_USERNAME } from './config'
 
 const connection = connect({
 	host: 'aws.connect.psdb.cloud',
-	username: Config.DATABASE_USERNAME,
-	password: Config.DATABASE_PASSWORD,
+	username: DATABASE_USERNAME,
+	password: DATABASE_PASSWORD,
 })
 
 export const db = drizzle(connection)

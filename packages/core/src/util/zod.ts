@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+export const id = () => z.string().cuid2()
+
 export function zod<
 	Schema extends z.ZodSchema<any, any, any>,
 	Return extends any,
