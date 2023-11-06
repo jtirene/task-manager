@@ -1,5 +1,6 @@
 import {
 	CreateList,
+	GetAll,
 	RestoreList,
 	SoftDeleteList,
 	TaskList,
@@ -20,5 +21,8 @@ export const taskList = trpc.router({
 	}),
 	restore: publicProcedure.input(RestoreList).mutation((ctx) => {
 		TaskList.restore(ctx.input)
+	}),
+	getAll: publicProcedure.input(GetAll).query(async (ctx) => {
+		return await TaskList.getAll(ctx.input)
 	}),
 })

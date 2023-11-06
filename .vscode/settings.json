@@ -37,7 +37,8 @@
 		"packages/web/postcss.config.js": true,
 		"packages/web/tailwind.config.js": true,
 		"packages/web/src/sst-env.d.ts": true,
-		"packages/web/src/vite-env.d.ts": true
+		"packages/web/src/vite-env.d.ts": true,
+		"packages/core/drizzle.config.ts": true
 	},
 	"explorerExclude.backup": {}
 }

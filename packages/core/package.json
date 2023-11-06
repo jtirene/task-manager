@@ -7,7 +7,8 @@
 		"typecheck": "tsc -noEmit",
 		"db:generate": "sst bind drizzle-kit generate:mysql",
 		"db:push": "sst bind drizzle-kit push:mysql",
-		"db:studio": "sst bind 'drizzle-kit studio'"
+		"db:studio": "sst bind 'drizzle-kit studio'",
+		"cuid": "node -e \"var { createId } = require('@paralleldrive/cuid2'); console.log( createId() );\""
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8.10.125",
@@ -18,6 +19,7 @@
 		"vitest": "^0.34.6"
 	},
 	"dependencies": {
+		"@paralleldrive/cuid2": "^2.2.2",
 		"@planetscale/database": "^1.11.0",
 		"@trpc/server": "^10.43.0",
 		"drizzle-orm": "^0.28.6",

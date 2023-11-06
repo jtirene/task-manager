@@ -57,3 +57,11 @@ export const restore = zod(RestoreList, async (input) => {
 			.where(eq(taskLists.listId, input.listId))
 	})
 })
+
+export type GetAll = z.infer<typeof GetAll>
+export const GetAll = z.object({ limit: z.number().optional().default(100) })
+export const getAll = zod(GetAll, async (input) => {
+	return await db.transaction(async (tx) => {
+		return tx.select().from(taskLists).limit(input.limit)
+	})
+})
