@@ -6,12 +6,14 @@
 		"test": "sst bind vitest",
 		"typecheck": "tsc -noEmit",
 		"db:generate": "sst bind drizzle-kit generate:mysql",
-		"db:push": "sst bind drizzle-kit push:mysql"
+		"db:push": "sst bind drizzle-kit push:mysql",
+		"db:studio": "sst bind 'drizzle-kit studio'"
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8.10.125",
 		"@types/node": "^20.8.9",
 		"drizzle-kit": "^0.19.13",
+		"mysql2": "^3.6.3",
 		"sst": "^2.32.2",
 		"vitest": "^0.34.6"
 	},
