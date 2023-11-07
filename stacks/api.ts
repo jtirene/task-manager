@@ -1,7 +1,9 @@
 import { Api, StackContext, use } from 'sst/constructs'
+import { Auth } from './auth'
 import { Database } from './database'
 
 export function API({ stack }: StackContext) {
+	const { CLERK_PUBLIC_KEY } = use(Auth)
 	const { DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD } = use(Database)
 
 	const api = new Api(stack, 'api', {
@@ -11,7 +13,12 @@ export function API({ stack }: StackContext) {
 		},
 		defaults: {
 			function: {
-				bind: [DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD],
+				bind: [
+					DATABASE_NAME,
+					DATABASE_USERNAME,
+					DATABASE_PASSWORD,
+					CLERK_PUBLIC_KEY,
+				],
 				runtime: 'nodejs18.x',
 			},
 		},

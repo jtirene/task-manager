@@ -1,6 +1,5 @@
 import { SignedIn, SignedOut, useClerk } from '@clerk/clerk-react'
 import { ArrowUpRight } from 'lucide-react'
-import { TaskLists } from '../components/TaskLists'
 import { SignOutButton } from '../components/auth/sign-out-button'
 import { ThemeToggle } from '../components/theme/theme-toggle'
 import { Button } from '../components/ui/button'
@@ -22,9 +21,7 @@ const SignedInContent = () => {
 					</div>
 				</div>
 			</div>
-			<div className="p-6">
-				<TaskLists />
-			</div>
+			<div className="p-6">Welcome to Task Manager!</div>
 		</div>
 	)
 }

@@ -1,3 +1,4 @@
+import { useAuth } from '@clerk/clerk-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { httpBatchLink } from '@trpc/client'
 import { ReactNode, useState } from 'react'
@@ -8,6 +9,8 @@ type TRPCProvider = {
 }
 
 export const TRPCProvider = ({ children }: TRPCProvider) => {
+	const { getToken } = useAuth()
+
 	const [queryClient] = useState(() => new QueryClient())
 	const [trpcClient] = useState(() =>
 		trpc.createClient({
@@ -15,9 +18,9 @@ export const TRPCProvider = ({ children }: TRPCProvider) => {
 				httpBatchLink({
 					url: `${import.meta.env.VITE_APP_API_URL}/trpc`,
 					async headers() {
+						const token = await getToken()
 						return {
-							// TODO include authorization header
-							// authorization: getAuthCookie(),
+							...(token && { Authorization: `Bearer ${token}` }),
 						}
 					},
 				}),

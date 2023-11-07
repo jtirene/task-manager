@@ -6,7 +6,7 @@ import {
 	TaskList,
 	UpdateList,
 } from '../../../../core/src/task-list'
-import { publicProcedure } from '../procedures'
+import { publicProcedure } from '../procedure/public-procedure'
 import { trpc } from '../trpc'
 
 export const taskList = trpc.router({
