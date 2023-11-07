@@ -8,8 +8,11 @@ export function API({ stack }: StackContext) {
 
 	const api = new Api(stack, 'api', {
 		routes: {
-			'GET /trpc/{proxy+}': 'packages/functions/src/api/handler.handler',
-			'POST /trpc/{proxy+}': 'packages/functions/src/api/handler.handler',
+			'GET /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
+			'POST /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
+
+			'POST /webhooks/user-created':
+				'packages/functions/src/webhooks/user-created.handler',
 		},
 		defaults: {
 			function: {
