@@ -12,6 +12,7 @@ export function API({ stack }: StackContext) {
 		defaults: {
 			function: {
 				bind: [DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD],
+				runtime: 'nodejs18.x',
 			},
 		},
 	})
