@@ -1,5 +1,5 @@
-import { TaskLists } from '../TaskLists'
-import { ThemeToggle } from '../components/theme-toggle'
+import { TaskLists } from '../components/TaskLists'
+import { ThemeToggle } from '../components/theme/theme-toggle'
 
 export default function Home() {
 	return (

@@ -1,4 +1,4 @@
-import { trpc } from './util/trpc'
+import { trpc } from '../util/trpc'
 
 export const TaskLists = () => {
 	const taskLists = trpc.taskList.getAll.useQuery({})
