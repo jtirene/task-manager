@@ -3,16 +3,13 @@ import { Auth } from './auth'
 import { Database } from './database'
 
 export function API({ stack }: StackContext) {
-	const { CLERK_PUBLIC_KEY } = use(Auth)
+	const { CLERK_PUBLIC_KEY, CLERK_SECRET_KEY } = use(Auth)
 	const { DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD } = use(Database)
 
 	const api = new Api(stack, 'api', {
 		routes: {
-			'GET /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
-			'POST /trpc/{proxy+}': 'packages/functions/src/trpc/handler.handler',
-
-			'POST /webhooks/user-created':
-				'packages/functions/src/webhooks/user-created.handler',
+			'GET /trpc/{proxy+}': 'packages/functions/src/api/handler.handler',
+			'POST /trpc/{proxy+}': 'packages/functions/src/api/handler.handler',
 		},
 		defaults: {
 			function: {
@@ -21,6 +18,7 @@ export function API({ stack }: StackContext) {
 					DATABASE_USERNAME,
 					DATABASE_PASSWORD,
 					CLERK_PUBLIC_KEY,
+					CLERK_SECRET_KEY,
 				],
 				runtime: 'nodejs18.x',
 			},

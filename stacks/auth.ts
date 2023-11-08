@@ -20,8 +20,11 @@ RwIDAQAB
 -----END PUBLIC KEY-----`,
 	})
 
+	const CLERK_SECRET_KEY = new Config.Secret(stack, 'CLERK_SECRET_KEY')
+
 	return {
 		CLERK_PUBLISHABLE_KEY,
 		CLERK_PUBLIC_KEY,
+		CLERK_SECRET_KEY,
 	}
 }

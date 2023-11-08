@@ -4,3 +4,5 @@ import { Config } from 'sst/node/config'
 // frontend packages and importing TRPC routes
 // @ts-ignore
 export const CLERK_PUBLIC_KEY = Config.CLERK_PUBLIC_KEY
+// @ts-ignore
+export const CLERK_SECRET_KEY = Config.CLERK_SECRET_KEY
