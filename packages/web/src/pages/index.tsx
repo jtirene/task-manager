@@ -1,17 +1,14 @@
 import { useAuth, useClerk } from '@clerk/clerk-react'
 import { ArrowUpRight } from 'lucide-react'
-import { useEffect } from 'react'
 import { Button } from '../components/ui/button'
-import { Link, useNavigate } from '../router'
+import { Link, Navigate } from '../router'
 
 export default () => {
-	const navigate = useNavigate()
 	const { openSignIn } = useClerk()
-	const { isSignedIn } = useAuth()
+	const { isLoaded, isSignedIn } = useAuth()
 
-	useEffect(() => {
-		if (isSignedIn) navigate('/app')
-	}, [isSignedIn])
+	if (!isLoaded) return null
+	if (isSignedIn) return <Navigate to="/app" />
 
 	return (
 		<div className="container">

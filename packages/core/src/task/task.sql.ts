@@ -5,14 +5,16 @@ import {
 	timestamp,
 	varchar,
 } from 'drizzle-orm/mysql-core'
-import { cuid, timestamps } from '../util/sql'
+import { cuid, timeCreated, timeDeleted, timeUpdated } from './../sql'
 
 export const tasks = mysqlTable(
 	'tm_tasks',
 	{
 		listId: cuid('list_id').notNull(),
 		taskId: cuid('task_id').notNull(),
-		...timestamps,
+		timeCreated,
+		timeUpdated,
+		timeDeleted,
 		title: varchar('title', { length: 255 }).notNull(),
 		description: varchar('description', { length: 1000 }).notNull(),
 		dueDate: timestamp('due_date', {

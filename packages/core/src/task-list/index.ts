@@ -3,9 +3,9 @@ export * as TaskList from './index'
 import { eq, sql } from 'drizzle-orm'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
-import { db } from '../util/db'
-import { id, zod } from '../util/zod'
-import { taskLists } from './list.sql'
+import { db } from '../db'
+import { id, zod } from '../zod'
+import { taskLists } from './task-list.sql'
 
 export type List = z.infer<typeof List>
 export const List = createSelectSchema(taskLists)
