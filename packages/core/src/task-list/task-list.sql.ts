@@ -13,5 +13,5 @@ export const taskLists = mysqlTable(
 	},
 	(table) => ({
 		primary: primaryKey(table.listId),
-	})
+	}),
 )

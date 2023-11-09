@@ -1,6 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 import { z } from 'zod'
+import { id } from '../../../../core/src/zod'
 import { CLERK_PUBLIC_KEY } from '../config'
 import { trpc } from '../trpc'
 
@@ -13,7 +14,7 @@ const AuthPayload = z.object({
 	nbf: z.number(),
 	sid: z.string(),
 	sub: z.string(),
-	userId: z.string().cuid2().nullable().optional(),
+	userId: id().nullable().optional(),
 })
 
 export const isAuthenticated = trpc.middleware(async ({ ctx, next }) => {

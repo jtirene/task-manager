@@ -1,6 +1,17 @@
-import { CreateList, TaskList } from '../../../../../core/src/task-list'
-import { publicProcedure } from '../../procedure/public-procedure'
+import { createId } from '@paralleldrive/cuid2'
+import { CreateTaskList, TaskLists } from '../../../../../core/src/task-list'
+import { userProcedure } from '../../procedure/user-procedure'
 
-export const create = publicProcedure.input(CreateList).mutation((ctx) => {
-	TaskList.create(ctx.input)
-})
+export const create = userProcedure
+	.input(
+		CreateTaskList.pick({
+			name: true,
+		}),
+	)
+	.mutation(({ ctx, input }) => {
+		TaskLists.create({
+			...input,
+			ownerId: ctx.user.id,
+			listId: createId(),
+		})
+	})

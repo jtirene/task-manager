@@ -1,38 +1,35 @@
-export * as TaskList from './index'
-
+export * as TaskLists from './index'
 import { eq, sql } from 'drizzle-orm'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
 import { db } from '../db'
-import { id, zod } from '../zod'
+import { zod } from '../zod'
+import { id } from './../zod'
 import { taskLists } from './task-list.sql'
 
-export type List = z.infer<typeof List>
-export const List = createSelectSchema(taskLists)
+export const TaskList = createSelectSchema(taskLists)
+export const CreateTaskList = createInsertSchema(taskLists)
 
-export type CreateList = z.infer<typeof CreateList>
-export const CreateList = createInsertSchema(taskLists)
-export const create = zod(CreateList, async (input) => {
+export const create = zod(CreateTaskList, async (input) => {
 	await db.insert(taskLists).values(input)
 })
 
-export type UpdateList = z.infer<typeof UpdateList>
-export const UpdateList = z.object({
-	listId: id(),
-	payload: CreateList.pick({
-		name: true,
+export const update = zod(
+	z.object({
+		listId: id(),
+		payload: CreateTaskList.pick({
+			name: true,
+		}),
 	}),
-})
-export const update = zod(UpdateList, async (input) => {
-	await db
-		.update(taskLists)
-		.set(input.payload)
-		.where(eq(taskLists.listId, input.listId))
-})
+	async (input) => {
+		await db
+			.update(taskLists)
+			.set(input.payload)
+			.where(eq(taskLists.listId, input.listId))
+	},
+)
 
-export type SoftDeleteList = z.infer<typeof SoftDeleteList>
-export const SoftDeleteList = z.object({ listId: id() })
-export const softDelete = zod(SoftDeleteList, async (input) => {
+export const softDelete = zod(z.object({ listId: id() }), async (input) => {
 	await db
 		.update(taskLists)
 		.set({
@@ -42,9 +39,7 @@ export const softDelete = zod(SoftDeleteList, async (input) => {
 		.where(eq(taskLists.listId, input.listId))
 })
 
-export type RestoreList = z.infer<typeof RestoreList>
-export const RestoreList = z.object({ listId: id() })
-export const restore = zod(RestoreList, async (input) => {
+export const restore = zod(z.object({ listId: id() }), async (input) => {
 	await db
 		.update(taskLists)
 		.set({
@@ -53,8 +48,27 @@ export const restore = zod(RestoreList, async (input) => {
 		.where(eq(taskLists.listId, input.listId))
 })
 
-export type GetAll = z.infer<typeof GetAll>
-export const GetAll = z.object({ limit: z.number().optional().default(100) })
-export const getAll = zod(GetAll, async (input) => {
-	return await db.select().from(taskLists).limit(input.limit)
-})
+export const getAll = zod(
+	z.object({
+		ownerId: id(),
+		limit: z.number(),
+	}),
+	async (input) => {
+		return await db
+			.select()
+			.from(taskLists)
+			.where(eq(taskLists.ownerId, input.ownerId))
+			.limit(input.limit)
+	},
+)
+
+export const getById = zod(
+	z.object({
+		listId: id(),
+	}),
+	async (input) => {
+		return await db.query.taskLists.findFirst({
+			where: eq(taskLists.listId, input.listId),
+		})
+	},
+)
