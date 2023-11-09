@@ -13,6 +13,7 @@ const AuthPayload = z.object({
 	nbf: z.number(),
 	sid: z.string(),
 	sub: z.string(),
+	userId: z.string().cuid2().nullable().optional(),
 })
 
 export const isAuthenticated = trpc.middleware(async ({ ctx, next }) => {
@@ -38,7 +39,7 @@ export const isAuthenticated = trpc.middleware(async ({ ctx, next }) => {
 
 	const payload = AuthPayload.safeParse(rawPayload)
 	if (!payload.success) {
-		console.error(payload.error)
+		console.error(JSON.stringify(payload.error, null, 2))
 		throw new TRPCError({
 			code: 'UNAUTHORIZED',
 			message: 'Invalid token payload',
@@ -56,7 +57,8 @@ export const isAuthenticated = trpc.middleware(async ({ ctx, next }) => {
 	return next({
 		ctx: {
 			user: {
-				id: payload.data.sub,
+				id: payload.data.userId,
+				sub: payload.data.sub,
 			},
 		},
 	})
