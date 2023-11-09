@@ -10,7 +10,15 @@ import { userProfiles } from './user-profile.sql'
 export type CreateInput = z.infer<typeof CreateInput>
 export const CreateInput = createInsertSchema(userProfiles)
 export const create = zod(CreateInput, async (input) => {
-	await db.insert(userProfiles).values(input)
+	await db
+		.insert(userProfiles)
+		.values(input)
+		// workaround for a no-op to make this idempotent
+		.onDuplicateKeyUpdate({
+			set: {
+				userSub: input.userSub,
+			},
+		})
 })
 
 export type GetInput = z.infer<typeof GetInput>
