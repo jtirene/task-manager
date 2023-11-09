@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 import { z } from 'zod'
-import { CLERK_PUBLIC_KEY } from '../util/config'
+import { CLERK_PUBLIC_KEY } from '../config'
 import { trpc } from '../trpc'
 
 type AuthPayload = z.infer<typeof AuthPayload>

@@ -3,11 +3,14 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"test": "sst bind vitest",
+		"test": "sst bind 'vitest'",
 		"typecheck": "tsc -noEmit",
-		"db:generate": "sst bind drizzle-kit generate:mysql",
-		"db:push": "sst bind drizzle-kit push:mysql",
+		"db:generate": "sst bind 'drizzle-kit generate:mysql'",
+		"db:push": "sst bind 'drizzle-kit push:mysql'",
 		"db:studio": "sst bind 'drizzle-kit studio'",
+		"db:up": "sst bind 'drizzle-kit up:mysql'",
+		"db:check": "sst bind 'drizzle-kit check:mysql'",
+		"db:introspect": "sst bind 'drizzle-kit introspect:mysql'",
 		"cuid": "node -e \"var { createId } = require('@paralleldrive/cuid2'); console.log( createId() );\""
 	},
 	"devDependencies": {
