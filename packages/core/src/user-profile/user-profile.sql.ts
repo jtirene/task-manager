@@ -10,9 +10,11 @@ export const userProfiles = mysqlTable(
 		timeCreated,
 		timeUpdated,
 		email: varchar('email', { length: 320 }),
+		firstName: varchar('first_name', { length: 256 }),
+		profilePicture: varchar('profile_picture', { length: 2048 }),
 		notificationsEnabled: boolean('notifications_enabled').notNull(),
 	},
 	(table) => ({
 		unique: unique().on(table.userSub),
-	})
+	}),
 )

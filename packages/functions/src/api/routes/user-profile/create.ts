@@ -20,6 +20,8 @@ export const create = privateProcedure.mutation(async ({ ctx }) => {
 				userId,
 				userSub,
 				email: primaryEmailAddress.emailAddress,
+				firstName: clerkUser.firstName,
+				profilePicture: clerkUser.imageUrl,
 				notificationsEnabled: false,
 			})
 		} catch (error) {
