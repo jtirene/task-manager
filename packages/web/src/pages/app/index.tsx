@@ -1,3 +1,3 @@
 export default () => {
-	return <div>AppIndex</div>
+	return <div>Dashboard</div>
 }
