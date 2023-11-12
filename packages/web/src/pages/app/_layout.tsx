@@ -1,7 +1,8 @@
 import { useUser } from '@clerk/clerk-react'
-import { Outlet } from 'react-router-dom'
 import { useProfileState } from '../../hooks/useProfileState'
 import { Navigate } from '../../router'
+import { MainContent } from './_components/layout/main-content'
+import { SidebarContent } from './_components/layout/sidebar-content'
 
 export default () => {
 	const { isLoaded, isSignedIn } = useUser()
@@ -11,5 +12,14 @@ export default () => {
 	if (!isSignedIn) return <Navigate to="/" />
 	if (!isProfileCreated) return <Navigate to="/profile/create" />
 
-	return <Outlet />
+	return (
+		<div className="h-screen flex">
+			<div className="w-1/5">
+				<SidebarContent />
+			</div>
+			<div className="flex-1">
+				<MainContent />
+			</div>
+		</div>
+	)
 }
