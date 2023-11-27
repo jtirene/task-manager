@@ -26,8 +26,7 @@ const CreateTaskListForm = () => {
 	const navigate = useNavigate()
 	const trpcUtils = trpc.useUtils()
 
-	const { mutate, isLoading, isError, error } =
-		trpc.taskList.create.useMutation()
+	const { mutate, isLoading } = trpc.taskList.create.useMutation()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),

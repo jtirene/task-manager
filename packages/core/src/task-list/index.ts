@@ -1,5 +1,5 @@
 export * as TaskLists from './index'
-import { eq, sql } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
 import { db } from '../db'
@@ -29,23 +29,8 @@ export const update = zod(
 	},
 )
 
-export const softDelete = zod(z.object({ listId: id() }), async (input) => {
-	await db
-		.update(taskLists)
-		.set({
-			// TODO is this the right way to do this?
-			timeDeleted: sql`CURRENT_TIMESTAMP`,
-		})
-		.where(eq(taskLists.listId, input.listId))
-})
-
-export const restore = zod(z.object({ listId: id() }), async (input) => {
-	await db
-		.update(taskLists)
-		.set({
-			timeDeleted: null,
-		})
-		.where(eq(taskLists.listId, input.listId))
+export const deleteList = zod(z.object({ listId: id() }), async (input) => {
+	await db.delete(taskLists).where(eq(taskLists.listId, input.listId))
 })
 
 export const getAll = zod(
