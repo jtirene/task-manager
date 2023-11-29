@@ -2,10 +2,9 @@ export * as TaskLists from './index'
 import { eq } from 'drizzle-orm'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
-import { db } from '../db'
-import { zod } from '../zod'
-import { id } from './../zod'
-import { taskLists } from './task-list.sql'
+import { taskLists } from '../../entities/task-list.sql'
+import { db } from '../../util/db'
+import { id, zod } from '../../util/zod'
 
 export const TaskList = createSelectSchema(taskLists)
 export const CreateTaskList = createInsertSchema(taskLists)

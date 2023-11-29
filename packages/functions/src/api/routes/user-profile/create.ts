@@ -1,5 +1,5 @@
 import { createId } from '@paralleldrive/cuid2'
-import { UserProfile } from '../../../../../core/src/user-profile'
+import { UserProfile } from '../../../../../core/src/services/user-profile'
 import { clerkClient } from '../../clerk'
 import { privateProcedure } from '../../procedure/private-procedure'
 

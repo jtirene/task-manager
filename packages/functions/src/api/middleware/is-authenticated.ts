@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 import { z } from 'zod'
-import { id } from '../../../../core/src/zod'
+import { id } from '../../../../core/src/util/zod'
 import { CLERK_PUBLIC_KEY } from '../config'
 import { trpc } from '../trpc'
 

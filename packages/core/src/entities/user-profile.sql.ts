@@ -1,6 +1,5 @@
 import { boolean, mysqlTable, unique, varchar } from 'drizzle-orm/mysql-core'
-import { cuid } from '../sql'
-import { timeCreated, timeUpdated } from './../sql'
+import { cuid, timeCreated, timeUpdated } from '../util/sql'
 
 export const userProfiles = mysqlTable(
 	'tm_user_profiles',

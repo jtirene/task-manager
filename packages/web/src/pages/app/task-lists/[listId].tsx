@@ -56,7 +56,7 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 								{ listId },
 								{
 									onSuccess: () => {
-										trpcUtils.taskList.invalidate()
+										trpcUtils.taskList.getAllOwnedByUser.invalidate()
 										setOpen(false)
 										navigate('/app')
 									},

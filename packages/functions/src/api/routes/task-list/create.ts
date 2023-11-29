@@ -1,4 +1,7 @@
-import { CreateTaskList, TaskLists } from '../../../../../core/src/task-list'
+import {
+	CreateTaskList,
+	TaskLists,
+} from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
 export const create = userProcedure

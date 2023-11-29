@@ -3,9 +3,9 @@ export * as UserProfile from './index'
 import { eq } from 'drizzle-orm'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
-import { db } from '../db'
-import { zod } from '../zod'
-import { userProfiles } from './user-profile.sql'
+import { userProfiles } from '../../entities/user-profile.sql'
+import { db } from '../../util/db'
+import { zod } from '../../util/zod'
 
 export type CreateInput = z.infer<typeof CreateInput>
 export const CreateInput = createInsertSchema(userProfiles)

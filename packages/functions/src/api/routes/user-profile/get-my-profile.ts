@@ -1,4 +1,4 @@
-import { UserProfile } from '../../../../../core/src/user-profile'
+import { UserProfile } from '../../../../../core/src/services/user-profile'
 import { userProcedure } from '../../procedure/user-procedure'
 
 export const getMyProfile = userProcedure.query(async ({ ctx }) => {

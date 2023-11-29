@@ -1,5 +1,5 @@
 import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
-import { cuid, timeCreated, timeUpdated } from '../sql'
+import { cuid, timeCreated, timeUpdated } from '../util/sql'
 
 export const taskLists = mysqlTable(
 	'tm_task_lists',
