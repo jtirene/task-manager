@@ -14,7 +14,7 @@ const AuthPayload = z.object({
 	nbf: z.number(),
 	sid: z.string(),
 	sub: z.string(),
-	userId: id().nullable().optional(),
+	userId: id().optional(),
 })
 
 export const isAuthenticated = trpc.middleware(async ({ ctx, next }) => {

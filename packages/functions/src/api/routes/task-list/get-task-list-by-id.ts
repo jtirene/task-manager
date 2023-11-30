@@ -1,26 +1,26 @@
 import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
-import { TaskList, TaskLists } from '../../../../../core/src/services/task-list'
+import { TaskListService } from '../../../../../core/src/services/task-list-service'
+import { GetTaskListByIdInput } from '../../../../../core/src/services/task-list-service/get-task-list-by-id'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export type GetTaskListByIdInput = z.infer<typeof TaskList>
-export const GetTaskListByIdInput = TaskList.pick({
-	listId: true,
-})
-
-export const GetTaskListById = userProcedure
-	.input(GetTaskListByIdInput)
-	.query(async ({ ctx: { user }, input: { listId } }) => {
-		const list = await TaskLists.getById({ listId })
+export const GetTaskListById = userProcedure.input(GetTaskListByIdInput).query(
+	async ({
+		ctx: {
+			user: { id },
+		},
+		input: { listId },
+	}) => {
+		const list = await TaskListService.GetTaskListById({ listId })
 		if (!list)
 			throw new TRPCError({
 				code: 'NOT_FOUND',
 				message: `List ${listId} not found`,
 			})
-		if (list.ownerId !== user.id)
+		if (list.ownerId !== id)
 			throw new TRPCError({
 				code: 'UNAUTHORIZED',
-				message: `User ${user.id} does not have permission to view list ${listId}`,
+				message: `User ${id} does not have permission to view list ${listId}`,
 			})
 		return list
-	})
+	},
+)

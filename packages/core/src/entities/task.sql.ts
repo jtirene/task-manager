@@ -5,9 +5,10 @@ import {
 	timestamp,
 	varchar,
 } from 'drizzle-orm/mysql-core'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { cuid, timeCreated, timeDeleted, timeUpdated } from '../util/sql'
 
-export const tasks = mysqlTable(
+export const TaskTable = mysqlTable(
 	'tm_tasks',
 	{
 		listId: cuid('list_id').notNull(),
@@ -32,3 +33,6 @@ export const tasks = mysqlTable(
 		primary: primaryKey(table.listId, table.taskId),
 	}),
 )
+
+export const Task = createSelectSchema(TaskTable)
+export const InsertTask = createInsertSchema(TaskTable)

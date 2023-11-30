@@ -1,7 +1,8 @@
 import { boolean, mysqlTable, unique, varchar } from 'drizzle-orm/mysql-core'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { cuid, timeCreated, timeUpdated } from '../util/sql'
 
-export const userProfiles = mysqlTable(
+export const UserProfileTable = mysqlTable(
 	'tm_user_profiles',
 	{
 		userId: cuid('user_id').primaryKey(),
@@ -17,3 +18,6 @@ export const userProfiles = mysqlTable(
 		unique: unique().on(table.userSub),
 	}),
 )
+
+export const UserProfile = createSelectSchema(UserProfileTable)
+export const InsertUserProfile = createInsertSchema(UserProfileTable)

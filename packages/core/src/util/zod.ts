@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const id = () => z.string().cuid2()
 
-export function zod<
+export function validate<
 	Schema extends z.ZodSchema<any, any, any>,
 	Return extends any,
 >(schema: Schema, func: (value: z.infer<Schema>) => Return) {

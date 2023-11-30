@@ -1,6 +1,14 @@
+import { z } from 'zod'
+import { UserProfile } from '../../entities/user-profile.sql'
 import { clerkClient } from '../../util/clerk'
+import { validate } from '../../util/zod'
 
-export const getClerkUser = async (userSub: string) => {
+export type GetBySubInput = z.infer<typeof GetBySubInput>
+export const GetBySubInput = UserProfile.pick({
+	userSub: true,
+})
+
+export const GetBySub = validate(GetBySubInput, async ({ userSub }) => {
 	const clerkUser = await clerkClient.users.getUser(userSub)
 
 	const primaryEmailAddress = clerkUser.emailAddresses.find(
@@ -13,12 +21,4 @@ export const getClerkUser = async (userSub: string) => {
 		...clerkUser,
 		primaryEmailAddress,
 	}
-}
-
-export const setClerkUserId = async (userSub: string, userId: string) => {
-	await clerkClient.users.updateUser(userSub, {
-		publicMetadata: {
-			userId,
-		},
-	})
-}
+})
