@@ -1,6 +1,8 @@
 import { UserProfile } from '../../../../../core/src/services/user-profile'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const getCurrentUserProfile = userProcedure.query(async ({ ctx }) => {
-	return await UserProfile.getById({ userId: ctx.user.id })
-})
+export const GetCurrentUserProfile = userProcedure.query(
+	async ({ ctx: { user } }) => {
+		return await UserProfile.getById({ userId: user.id })
+	},
+)

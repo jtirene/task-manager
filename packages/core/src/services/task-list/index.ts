@@ -7,16 +7,16 @@ import { db } from '../../util/db'
 import { id, zod } from '../../util/zod'
 
 export const TaskList = createSelectSchema(taskLists)
-export const CreateTaskList = createInsertSchema(taskLists)
+export const InsertTaskList = createInsertSchema(taskLists)
 
-export const create = zod(CreateTaskList, async (input) => {
+export const create = zod(InsertTaskList, async (input) => {
 	await db.insert(taskLists).values(input)
 })
 
 export const update = zod(
 	z.object({
 		listId: id(),
-		payload: CreateTaskList.pick({
+		payload: InsertTaskList.pick({
 			name: true,
 		}),
 	}),

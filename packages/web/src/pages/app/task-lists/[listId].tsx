@@ -22,7 +22,7 @@ type DeleteTaskList = {
 
 const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 	const trpcUtils = trpc.useUtils()
-	const { mutate, isLoading } = trpc.taskList.deleteTaskList.useMutation()
+	const { mutate, isLoading } = trpc.DeleteTaskList.useMutation()
 
 	const navigate = useNavigate()
 
@@ -56,7 +56,7 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 								{ listId },
 								{
 									onSuccess: () => {
-										trpcUtils.taskList.getTaskListsOwnedByUser.invalidate()
+										trpcUtils.GetTaskListsOwnedByUser.invalidate()
 										setOpen(false)
 										navigate('/app')
 									},
@@ -83,10 +83,9 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 
 export default () => {
 	const { listId } = useParams('/app/task-lists/:listId')
-	const { isLoading, isError, error, data } =
-		trpc.taskList.getTaskListById.useQuery({
-			listId,
-		})
+	const { isLoading, isError, error, data } = trpc.GetTaskListById.useQuery({
+		listId,
+	})
 
 	if (isLoading) return <div>Loading...</div>
 	if (isError) return <div>Error: {error.message}</div>

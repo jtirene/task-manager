@@ -1,19 +1,22 @@
+import { z } from 'zod'
 import {
-	CreateTaskList,
+	InsertTaskList,
 	TaskLists,
 } from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const createTaskList = userProcedure
-	.input(
-		CreateTaskList.pick({
-			listId: true,
-			name: true,
-		}),
-	)
-	.mutation(async ({ ctx, input }) => {
+export type CreateTaskListInput = z.infer<typeof InsertTaskList>
+export const CreateTaskListInput = InsertTaskList.pick({
+	listId: true,
+	name: true,
+})
+
+export const CreateTaskList = userProcedure
+	.input(CreateTaskListInput)
+	.mutation(async ({ ctx: { user }, input: { listId, name } }) => {
 		await TaskLists.create({
-			...input,
-			ownerId: ctx.user.id,
+			listId,
+			ownerId: user.id,
+			name,
 		})
 	})

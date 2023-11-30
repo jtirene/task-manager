@@ -1,26 +1,26 @@
 import { TRPCError } from '@trpc/server'
+import { z } from 'zod'
 import { TaskList, TaskLists } from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const getTaskListById = userProcedure
-	.input(
-		TaskList.pick({
-			listId: true,
-		}),
-	)
-	.query(async ({ ctx, input }) => {
-		const list = await TaskLists.getById(input)
+export type GetTaskListByIdInput = z.infer<typeof TaskList>
+export const GetTaskListByIdInput = TaskList.pick({
+	listId: true,
+})
+
+export const GetTaskListById = userProcedure
+	.input(GetTaskListByIdInput)
+	.query(async ({ ctx: { user }, input: { listId } }) => {
+		const list = await TaskLists.getById({ listId })
 		if (!list)
 			throw new TRPCError({
 				code: 'NOT_FOUND',
-				message: `List ${input.listId} not found`,
+				message: `List ${listId} not found`,
 			})
-
-		if (list.ownerId !== ctx.user.id)
+		if (list.ownerId !== user.id)
 			throw new TRPCError({
 				code: 'UNAUTHORIZED',
-				message: `User ${ctx.user.id} does not have permission to view list ${input.listId}`,
+				message: `User ${user.id} does not have permission to view list ${listId}`,
 			})
-
 		return list
 	})

@@ -1,6 +1,6 @@
 import { clerkClient } from '../../util/clerk'
 
-export async function getClerkUser(userSub: string) {
+export const getClerkUser = async (userSub: string) => {
 	const clerkUser = await clerkClient.users.getUser(userSub)
 
 	const primaryEmailAddress = clerkUser.emailAddresses.find(
@@ -15,7 +15,7 @@ export async function getClerkUser(userSub: string) {
 	}
 }
 
-export async function setClerkUserId(userSub: string, userId: string) {
+export const setClerkUserId = async (userSub: string, userId: string) => {
 	await clerkClient.users.updateUser(userSub, {
 		publicMetadata: {
 			userId,

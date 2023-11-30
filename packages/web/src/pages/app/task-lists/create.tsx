@@ -26,7 +26,7 @@ const CreateTaskListForm = () => {
 	const navigate = useNavigate()
 	const trpcUtils = trpc.useUtils()
 
-	const { mutate, isLoading } = trpc.taskList.createTaskList.useMutation()
+	const { mutate, isLoading } = trpc.CreateTaskList.useMutation()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -44,7 +44,7 @@ const CreateTaskListForm = () => {
 			},
 			{
 				onSuccess: () => {
-					trpcUtils.taskList.getTaskListsOwnedByUser.invalidate()
+					trpcUtils.GetTaskListsOwnedByUser.invalidate()
 					navigate(`/app/task-lists/:listId`, {
 						params: {
 							listId,
