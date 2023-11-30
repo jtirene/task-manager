@@ -5,7 +5,7 @@ import {
 } from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const update = userProcedure
+export const updateTaskList = userProcedure
 	.input(
 		CreateTaskList.pick({
 			listId: true,

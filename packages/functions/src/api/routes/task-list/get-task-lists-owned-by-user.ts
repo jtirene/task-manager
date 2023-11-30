@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { TaskLists } from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const getAllOwnedByUser = userProcedure
+export const getTaskListsOwnedByUser = userProcedure
 	.input(z.object({ limit: z.number() }))
 	.query(async ({ ctx, input }) => {
 		return await TaskLists.getAll({

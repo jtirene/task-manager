@@ -2,7 +2,7 @@ import { TRPCError } from '@trpc/server'
 import { TaskList, TaskLists } from '../../../../../core/src/services/task-list'
 import { userProcedure } from '../../procedure/user-procedure'
 
-export const getById = userProcedure
+export const getTaskListById = userProcedure
 	.input(
 		TaskList.pick({
 			listId: true,

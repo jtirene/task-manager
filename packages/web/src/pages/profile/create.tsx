@@ -23,7 +23,7 @@ const LoadingText = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setMessageIndex(
-				(messageIndex) => (messageIndex + 1) % shuffledMessages.length
+				(messageIndex) => (messageIndex + 1) % shuffledMessages.length,
 			)
 		}, 2500)
 		return () => clearInterval(interval)
@@ -39,7 +39,7 @@ const LoadingText = () => {
 export default () => {
 	const navigate = useNavigate()
 	const { user } = useUser()
-	const create = trpc.userProfile.create.useMutation()
+	const create = trpc.userProfile.createUserProfile.useMutation()
 
 	const [isTimeElapsed, setIsTimeElapsed] = useState(false)
 	const [isReloaded, setIsReloaded] = useState(false)

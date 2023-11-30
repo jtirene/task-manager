@@ -39,7 +39,19 @@
 		"packages/web/src/sst-env.d.ts": true,
 		"packages/web/src/vite-env.d.ts": true,
 		"packages/core/drizzle.config.ts": true,
-		"packages/web/components.json": true
+		"packages/web/components.json": true,
+		"packages/web/index.html": true,
+		"packages/core/src/util": true,
+		"packages/functions/src/api/middleware": true,
+		"packages/functions/src/api/procedure": true,
+		"packages/functions/src/api/util": true,
+		"packages/web/public": true,
+		"packages/web/src/assets": true,
+		"packages/web/src/hooks": true,
+		"packages/web/src/util": true,
+		"packages/web/src/index.css": true,
+		"packages/web/src/main.tsx": true,
+		"packages/web/src/router.ts": true
 	},
 	"explorerExclude.backup": {}
 }
