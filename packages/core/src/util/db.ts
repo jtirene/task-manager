@@ -1,8 +1,8 @@
 import { connect } from '@planetscale/database'
 import { drizzle } from 'drizzle-orm/planetscale-serverless'
-import { TaskListTable } from '../entities/task-list.sql'
-import { TaskTable } from '../entities/task.sql'
-import { UserProfileTable } from '../entities/user-profile.sql'
+import { Lists } from '../entities/list.sql.js'
+import { Profiles } from '../entities/profile.sql'
+import { Tasks } from '../entities/task.sql'
 import { DATABASE_PASSWORD, DATABASE_USERNAME } from './config'
 
 const connection = connect({
@@ -13,8 +13,8 @@ const connection = connect({
 
 export const db = drizzle(connection, {
 	schema: {
-		tasks: TaskTable,
-		taskLists: TaskListTable,
-		userProfiles: UserProfileTable,
+		tasks: Tasks,
+		taskLists: Lists,
+		userProfiles: Profiles,
 	},
 })

@@ -1,4 +1,4 @@
 import { isUser } from '../middleware/is-user'
-import { publicProcedure } from './public-procedure'
+import { PublicProcedure } from './public-procedure'
 
-export const userProcedure = publicProcedure.use(isUser)
+export const UserProcedure = PublicProcedure.use(isUser)

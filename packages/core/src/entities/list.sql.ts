@@ -2,8 +2,8 @@ import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { cuid, timeCreated, timeUpdated } from '../util/sql'
 
-export const TaskListTable = mysqlTable(
-	'tm_task_lists',
+export const Lists = mysqlTable(
+	'tm_lists',
 	{
 		listId: cuid('list_id').notNull(),
 		ownerId: cuid('owner_id').notNull(),
@@ -16,5 +16,5 @@ export const TaskListTable = mysqlTable(
 	}),
 )
 
-export const TaskList = createSelectSchema(TaskListTable)
-export const InsertTaskList = createInsertSchema(TaskListTable)
+export const List = createSelectSchema(Lists)
+export const InsertList = createInsertSchema(Lists)

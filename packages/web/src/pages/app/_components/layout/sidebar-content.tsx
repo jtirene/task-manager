@@ -13,7 +13,7 @@ import { Link } from '../../../../router'
 import { trpc } from '../../../../util/trpc'
 
 const ProfileDropdown = () => {
-	const { data } = trpc.GetCurrentUserProfile.useQuery()
+	const { data } = trpc.Profile.GetCurrentUserProfile.useQuery()
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -62,7 +62,7 @@ const ScheduleList = () => {
 }
 
 const TaskLists = () => {
-	const { data } = trpc.GetTaskListsOwnedByUser.useQuery({ limit: 10 })
+	const { data } = trpc.List.GetForCurrentUser.useQuery({ limit: 10 })
 	return (
 		<div className="flex flex-col gap-6 pl-2 text-lg">
 			<div className="flex items-center gap-4">

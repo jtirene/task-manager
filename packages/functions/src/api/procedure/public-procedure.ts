@@ -1,3 +1,3 @@
 import { trpc } from '../util/trpc'
 
-export const publicProcedure = trpc.procedure
+export const PublicProcedure = trpc.procedure

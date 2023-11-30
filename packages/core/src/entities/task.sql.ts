@@ -8,7 +8,7 @@ import {
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { cuid, timeCreated, timeDeleted, timeUpdated } from '../util/sql'
 
-export const TaskTable = mysqlTable(
+export const Tasks = mysqlTable(
 	'tm_tasks',
 	{
 		listId: cuid('list_id').notNull(),
@@ -34,5 +34,5 @@ export const TaskTable = mysqlTable(
 	}),
 )
 
-export const Task = createSelectSchema(TaskTable)
-export const InsertTask = createInsertSchema(TaskTable)
+export const Task = createSelectSchema(Tasks)
+export const InsertTask = createInsertSchema(Tasks)

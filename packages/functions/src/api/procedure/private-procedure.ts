@@ -1,4 +1,4 @@
 import { isAuthenticated } from '../middleware/is-authenticated'
-import { publicProcedure } from './public-procedure'
+import { PublicProcedure } from './public-procedure'
 
-export const privateProcedure = publicProcedure.use(isAuthenticated)
+export const PrivateProcedure = PublicProcedure.use(isAuthenticated)

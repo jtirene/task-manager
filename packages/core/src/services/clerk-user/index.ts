@@ -1,7 +1,7 @@
 import { GetBySub } from './get-by-sub'
-import { SetUserIdMetadata } from './set-user-id-metadata'
+import { SetMetadata } from './set-metadata'
 
 export const ClerkUserService = {
 	GetBySub,
-	SetUserIdMetadata,
+	SetMetadata,
 }
