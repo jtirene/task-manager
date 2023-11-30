@@ -1,10 +1,7 @@
 import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
 import { ListService } from '../../../../../core/src/services/list'
+import { DeleteInput } from '../../input/list/delete'
 import { UserProcedure } from '../../procedure/user-procedure'
-
-export type DeleteInput = z.infer<typeof DeleteInput>
-export const DeleteInput = ListService.Delete.input
 
 export const Delete = UserProcedure.input(DeleteInput).mutation(
 	async ({

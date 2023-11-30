@@ -1,10 +1,7 @@
 import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
 import { ListService } from '../../../../../core/src/services/list'
+import { UpdateInput } from '../../input/list/update'
 import { UserProcedure } from '../../procedure/user-procedure'
-
-export type UpdateInput = z.infer<typeof UpdateInput>
-export const UpdateInput = ListService.Update.input
 
 export const Update = UserProcedure.input(UpdateInput).mutation(
 	async ({

@@ -3,6 +3,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { CreateInput } from '../../../../../functions/src/api/input/list/create'
 import { Button } from '../../../components/ui/button'
 import {
 	Form,
@@ -16,10 +17,9 @@ import { Input } from '../../../components/ui/input'
 import { useNavigate } from '../../../router'
 import { trpc } from '../../../util/trpc'
 
-const formSchema = z.object({
-	name: z.string().min(2, {
-		message: 'Task List name must be at least 2 characters long.',
-	}),
+type FormSchema = z.infer<typeof FormSchema>
+const FormSchema = CreateInput.omit({
+	listId: true,
 })
 
 const CreateTaskListForm = () => {
@@ -28,14 +28,14 @@ const CreateTaskListForm = () => {
 
 	const { mutate, isLoading } = trpc.List.Create.useMutation()
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<FormSchema>({
+		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			name: '',
 		},
 	})
 
-	const onSubmit = (values: z.infer<typeof formSchema>) => {
+	const onSubmit = (values: FormSchema) => {
 		const listId = createId()
 		mutate(
 			{

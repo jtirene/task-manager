@@ -1,10 +1,7 @@
 import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
 import { ListService } from '../../../../../core/src/services/list'
+import { GetByIdInput } from '../../input/list/get-by-id'
 import { UserProcedure } from '../../procedure/user-procedure'
-
-export type GetByIdInput = z.infer<typeof GetByIdInput>
-export const GetByIdInput = ListService.GetById.input
 
 export const GetById = UserProcedure.input(GetByIdInput).query(
 	async ({

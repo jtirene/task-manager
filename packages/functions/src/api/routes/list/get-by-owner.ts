@@ -1,11 +1,6 @@
-import { z } from 'zod'
 import { ListService } from '../../../../../core/src/services/list'
+import { GetForCurrentUserInput } from '../../input/list/get-by-owner'
 import { UserProcedure } from '../../procedure/user-procedure'
-
-export type GetForCurrentUserInput = z.infer<typeof GetForCurrentUserInput>
-export const GetForCurrentUserInput = ListService.GetByOwner.input.pick({
-	limit: true,
-})
 
 export const GetForCurrentUser = UserProcedure.input(
 	GetForCurrentUserInput,

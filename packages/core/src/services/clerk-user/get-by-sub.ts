@@ -2,12 +2,10 @@ import { Profile } from '../../entities/profile.sql'
 import { clerkClient } from '../../util/clerk'
 import { createServiceFunction } from '../../util/service'
 
-const GetBySubInput = Profile.pick({
-	userSub: true,
-})
-
 export const GetBySub = createServiceFunction(
-	GetBySubInput,
+	Profile.pick({
+		userSub: true,
+	}),
 	async ({ userSub }) => {
 		const clerkUser = await clerkClient.users.getUser(userSub)
 
