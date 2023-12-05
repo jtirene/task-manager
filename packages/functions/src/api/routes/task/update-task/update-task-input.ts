@@ -1,13 +1,19 @@
 import { z } from 'zod'
+import {
+	TASK_DESCRIPTION_MAX_LENGTH,
+	TASK_PRIORITY_OPTIONS,
+	TASK_RECURRENCE_RULE_MAX_LENGTH,
+	TASK_TITLE_MAX_LENGTH,
+} from '../../../../../../core/src/entities/task/task'
 import { id } from '../../../../../../core/src/util/zod'
 
 export const UpdateTaskInput = z.object({
 	taskId: id,
-	title: z.string().max(255).optional(),
-	description: z.string().max(1000).optional(),
-	priority: z.enum(['none', 'low', 'medium', 'high', 'critical']).optional(),
+	title: z.string().max(TASK_TITLE_MAX_LENGTH).optional(),
+	description: z.string().max(TASK_DESCRIPTION_MAX_LENGTH).optional(),
+	priority: z.enum(TASK_PRIORITY_OPTIONS).optional(),
 	dateStart: z.date().optional(),
 	dateEnd: z.date().optional(),
-	recurrenceRule: z.string().max(255).optional(),
+	recurrenceRule: z.string().max(TASK_RECURRENCE_RULE_MAX_LENGTH).optional(),
 	dateRecurrenceEnd: z.date().optional(),
 })
