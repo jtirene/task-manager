@@ -1,7 +1,7 @@
 import { createId } from '@paralleldrive/cuid2'
 import { TRPCError } from '@trpc/server'
 import { eq } from 'drizzle-orm'
-import { Profiles } from '../../../../../core/src/entities/profile.sql'
+import { Profiles } from '../../../../../core/src/entities/profile/profile.sql'
 import { GetClerkUserBySub } from '../../../../../core/src/services/clerk/get-clerk-user-by-sub'
 import { SetClerkUserMetadata } from '../../../../../core/src/services/clerk/set-clerk-user-metadata'
 import { db } from '../../../../../core/src/util/db'

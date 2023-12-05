@@ -1,6 +1,7 @@
 import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { cuid, timeCreated, timeUpdated } from '../util/sql'
+import { cuid, timeCreated, timeUpdated } from '../../util/sql'
+import { LIST_NAME_MAX_LENGTH } from './list'
 
 export const Lists = mysqlTable(
 	'tm_lists',
@@ -9,7 +10,7 @@ export const Lists = mysqlTable(
 		ownerId: cuid('owner_id').notNull(),
 		timeCreated,
 		timeUpdated,
-		name: varchar('name', { length: 255 }).notNull(),
+		name: varchar('name', { length: LIST_NAME_MAX_LENGTH }).notNull(),
 	},
 	(table) => ({
 		primary: primaryKey(table.listId),

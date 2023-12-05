@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server'
 import { eq } from 'drizzle-orm'
-import { Lists } from '../../../../../../core/src/entities/list.sql.js'
+import { Lists } from '../../../../../../core/src/entities/list/list.sql.js'
 import { db } from '../../../../../../core/src/util/db.js'
 import { UserProcedure } from '../../../procedure/user-procedure.js'
 import { DeleteListInput } from './delete-list-input.js'

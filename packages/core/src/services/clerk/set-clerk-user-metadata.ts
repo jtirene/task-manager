@@ -1,9 +1,9 @@
-import { Profile } from '../../entities/profile.sql'
+import { InsertProfile } from '../../entities/profile/profile.sql'
 import { clerkClient } from '../../util/clerk'
 import { createServiceFunction } from '../../util/service'
 
 export const SetClerkUserMetadata = createServiceFunction(
-	Profile.pick({
+	InsertProfile.pick({
 		userId: true,
 		userSub: true,
 	}),

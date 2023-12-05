@@ -41,7 +41,6 @@
 		"packages/core/drizzle.config.ts": true,
 		"packages/web/components.json": true,
 		"packages/web/index.html": true,
-		"packages/core/src/util": true,
 		"packages/functions/src/api/middleware": true,
 		"packages/functions/src/api/procedure": true,
 		"packages/functions/src/api/util": true,

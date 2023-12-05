@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server'
 import { eq } from 'drizzle-orm'
-import { Profiles } from '../../../../../core/src/entities/profile.sql'
+import { Profiles } from '../../../../../core/src/entities/profile/profile.sql'
 import { db } from '../../../../../core/src/util/db'
 import { UserProcedure } from '../../procedure/user-procedure'
 

@@ -1,4 +1,4 @@
-import { Profile } from '../../entities/profile.sql'
+import { Profile } from '../../entities/profile/profile.sql'
 import { clerkClient } from '../../util/clerk'
 import { createServiceFunction } from '../../util/service'
 
