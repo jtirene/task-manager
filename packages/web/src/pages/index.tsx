@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { Link, Navigate } from '../router'
 
-export default () => {
+export default function Page() {
 	const { openSignIn } = useClerk()
 	const { isLoaded, isSignedIn } = useAuth()
 

@@ -4,7 +4,7 @@ import { Navigate } from '../../router'
 import { MainContent } from './_components/layout/main-content'
 import { SidebarContent } from './_components/layout/sidebar-content'
 
-export default () => {
+export default function Page() {
 	const { isLoaded, isSignedIn } = useUser()
 	const { isProfileCreated } = useProfileState()
 

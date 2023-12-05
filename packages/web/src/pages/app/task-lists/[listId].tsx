@@ -81,7 +81,7 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 	)
 }
 
-export default () => {
+export default function Page() {
 	const { listId } = useParams('/app/task-lists/:listId')
 	const { isLoading, isError, error, data } = trpc.List.GetById.useQuery({
 		listId,

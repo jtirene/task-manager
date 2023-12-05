@@ -88,7 +88,7 @@ const CreateTaskListForm = () => {
 	)
 }
 
-export default () => {
+export default function Page() {
 	return (
 		<div className="max-w-[800px] flex flex-col gap-8">
 			<h2 className="text-xl">New Task List</h2>

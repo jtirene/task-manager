@@ -36,7 +36,7 @@ const LoadingText = () => {
 	)
 }
 
-export default () => {
+export default function Page() {
 	const navigate = useNavigate()
 	const { user } = useUser()
 	const create = trpc.Profile.Create.useMutation()
