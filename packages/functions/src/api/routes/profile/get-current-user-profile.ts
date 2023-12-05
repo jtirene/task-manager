@@ -10,7 +10,7 @@ export const GetCurrentUserProfile = UserProcedure.query(
 			user: { id },
 		},
 	}) => {
-		const profile = await db.query.userProfiles.findFirst({
+		const profile = await db.query.Profiles.findFirst({
 			where: eq(Profiles.userId, id),
 		})
 		if (!profile)

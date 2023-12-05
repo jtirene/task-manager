@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import {
 	datetime,
 	mysqlEnum,
@@ -8,6 +8,7 @@ import {
 } from 'drizzle-orm/mysql-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { cuid } from '../../util/sql'
+import { Lists } from '../list/list.sql'
 import {
 	TASK_DESCRIPTION_MAX_LENGTH,
 	TASK_RECURRENCE_RULE_MAX_LENGTH,
@@ -30,7 +31,7 @@ export const Tasks = mysqlTable(
 		title: varchar('title', { length: TASK_TITLE_MAX_LENGTH }).notNull(),
 		description: varchar('description', {
 			length: TASK_DESCRIPTION_MAX_LENGTH,
-		}).notNull(),
+		}),
 		priority: mysqlEnum('priority', [
 			'none',
 			'low',
@@ -44,13 +45,20 @@ export const Tasks = mysqlTable(
 		dateEnd: datetime('date_end').notNull(),
 		recurrenceRule: varchar('recurrence_rule', {
 			length: TASK_RECURRENCE_RULE_MAX_LENGTH,
-		}).notNull(),
+		}),
 		dateRecurrenceEnd: datetime('date_recurrence_end'),
 	},
 	(table) => ({
 		primary: primaryKey(table.listId, table.taskId),
 	}),
 )
+
+export const TasksRelations = relations(Tasks, ({ one }) => ({
+	list: one(Lists, {
+		fields: [Tasks.listId],
+		references: [Lists.listId],
+	}),
+}))
 
 export const Task = createSelectSchema(Tasks)
 export const InsertTask = createInsertSchema(Tasks)

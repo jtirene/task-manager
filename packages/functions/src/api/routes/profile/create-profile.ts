@@ -28,7 +28,7 @@ export const CreateProfile = PrivateProcedure.mutation(
 					notificationsEnabled: false,
 				})
 			} catch (error) {
-				const profile = await db.query.userProfiles.findFirst({
+				const profile = await db.query.Profiles.findFirst({
 					where: eq(Profiles.userSub, sub),
 				})
 				if (!profile)

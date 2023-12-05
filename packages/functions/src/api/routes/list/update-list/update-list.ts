@@ -12,7 +12,7 @@ export const UpdateList = UserProcedure.input(UpdateListInput).mutation(
 		},
 		input: { listId, name },
 	}) => {
-		const list = await db.query.taskLists.findFirst({
+		const list = await db.query.TaskLists.findFirst({
 			where: eq(Lists.listId, listId),
 		})
 		if (!list)

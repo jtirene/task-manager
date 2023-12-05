@@ -12,7 +12,7 @@ export const DeleteList = UserProcedure.input(DeleteListInput).mutation(
 		},
 		input: { listId },
 	}) => {
-		const list = await db.query.taskLists.findFirst({
+		const list = await db.query.TaskLists.findFirst({
 			where: eq(Lists.listId, listId),
 		})
 		if (!list)
