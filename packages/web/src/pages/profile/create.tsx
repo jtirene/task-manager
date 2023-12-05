@@ -39,7 +39,7 @@ const LoadingText = () => {
 export default function Page() {
 	const navigate = useNavigate()
 	const { user } = useUser()
-	const create = trpc.Profile.Create.useMutation()
+	const create = trpc.CreateProfile.useMutation()
 
 	const [isTimeElapsed, setIsTimeElapsed] = useState(false)
 	const [isReloaded, setIsReloaded] = useState(false)

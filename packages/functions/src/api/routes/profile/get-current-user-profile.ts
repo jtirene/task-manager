@@ -1,4 +1,7 @@
-import { ProfileService } from '../../../../../core/src/services/profile'
+import { TRPCError } from '@trpc/server'
+import { eq } from 'drizzle-orm'
+import { Profiles } from '../../../../../core/src/entities/profile.sql'
+import { db } from '../../../../../core/src/util/db'
 import { UserProcedure } from '../../procedure/user-procedure'
 
 export const GetCurrentUserProfile = UserProcedure.query(
@@ -7,6 +10,14 @@ export const GetCurrentUserProfile = UserProcedure.query(
 			user: { id },
 		},
 	}) => {
-		return await ProfileService.GetById.execute({ userId: id })
+		const profile = await db.query.userProfiles.findFirst({
+			where: eq(Profiles.userId, id),
+		})
+		if (!profile)
+			throw new TRPCError({
+				code: 'NOT_FOUND',
+				message: `No profile found for userId: ${id}`,
+			})
+		return profile
 	},
 )

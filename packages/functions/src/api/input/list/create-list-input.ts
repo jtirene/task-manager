@@ -1,8 +1,8 @@
 import { z } from 'zod'
 import { id } from '../../../../../core/src/util/zod'
 
-export type CreateInput = z.infer<typeof CreateInput>
-export const CreateInput = z.object({
+export type CreateListInput = z.infer<typeof CreateListInput>
+export const CreateListInput = z.object({
 	listId: id(),
 	name: z.string(),
 })

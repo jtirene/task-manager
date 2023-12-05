@@ -3,7 +3,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { CreateInput } from '../../../../../functions/src/api/input/list/create'
+import { CreateListInput } from '../../../../../functions/src/api/input/list/create-list-input'
 import { Button } from '../../../components/ui/button'
 import {
 	Form,
@@ -18,7 +18,7 @@ import { useNavigate } from '../../../router'
 import { trpc } from '../../../util/trpc'
 
 type FormSchema = z.infer<typeof FormSchema>
-const FormSchema = CreateInput.omit({
+const FormSchema = CreateListInput.omit({
 	listId: true,
 })
 
@@ -26,7 +26,7 @@ const CreateTaskListForm = () => {
 	const navigate = useNavigate()
 	const trpcUtils = trpc.useUtils()
 
-	const { mutate, isLoading } = trpc.List.Create.useMutation()
+	const { mutate, isLoading } = trpc.CreateList.useMutation()
 
 	const form = useForm<FormSchema>({
 		resolver: zodResolver(FormSchema),
@@ -44,7 +44,7 @@ const CreateTaskListForm = () => {
 			},
 			{
 				onSuccess: () => {
-					trpcUtils.List.GetForCurrentUser.invalidate()
+					trpcUtils.GetListsForCurrentUser.invalidate()
 					navigate(`/app/task-lists/:listId`, {
 						params: {
 							listId,

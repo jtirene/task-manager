@@ -22,7 +22,7 @@ type DeleteTaskList = {
 
 const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 	const trpcUtils = trpc.useUtils()
-	const { mutate, isLoading } = trpc.List.Delete.useMutation()
+	const { mutate, isLoading } = trpc.DeleteList.useMutation()
 
 	const navigate = useNavigate()
 
@@ -56,7 +56,7 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 								{ listId },
 								{
 									onSuccess: () => {
-										trpcUtils.List.GetForCurrentUser.invalidate()
+										trpcUtils.GetListsForCurrentUser.invalidate()
 										setOpen(false)
 										navigate('/app')
 									},
@@ -83,7 +83,7 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 
 export default function Page() {
 	const { listId } = useParams('/app/task-lists/:listId')
-	const { isLoading, isError, error, data } = trpc.List.GetById.useQuery({
+	const { isLoading, isError, error, data } = trpc.GetListById.useQuery({
 		listId,
 	})
 

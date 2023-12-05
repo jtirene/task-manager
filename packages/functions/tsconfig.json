@@ -3,10 +3,6 @@
 	"compilerOptions": {
 		"module": "esnext",
 		"moduleResolution": "node",
-		"baseUrl": ".",
-		"paths": {
-			"@task-manager/core/*": ["../core/src/*"]
-		},
 		"strict": true
 	}
 }
