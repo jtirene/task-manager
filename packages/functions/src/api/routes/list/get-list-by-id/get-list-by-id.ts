@@ -12,7 +12,7 @@ export const GetListById = UserProcedure.input(GetListByIdInput).query(
 		},
 		input: { listId },
 	}) => {
-		const list = await db.query.TaskLists.findFirst({
+		const list = await db.query.Lists.findFirst({
 			where: eq(Lists.listId, listId),
 		})
 		if (!list)
