@@ -2,11 +2,10 @@ import {
 	mysqlEnum,
 	mysqlTable,
 	primaryKey,
-	timestamp,
 	varchar,
 } from 'drizzle-orm/mysql-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
-import { cuid, timeCreated, timeDeleted, timeUpdated } from '../util/sql'
+import { cuid, timeCreated, timeUpdated } from '../util/sql'
 
 export const Tasks = mysqlTable(
 	'tm_tasks',
@@ -15,12 +14,8 @@ export const Tasks = mysqlTable(
 		taskId: cuid('task_id').notNull(),
 		timeCreated,
 		timeUpdated,
-		timeDeleted,
 		title: varchar('title', { length: 255 }).notNull(),
 		description: varchar('description', { length: 1000 }).notNull(),
-		dueDate: timestamp('due_date', {
-			mode: 'string',
-		}).notNull(),
 		priority: mysqlEnum('priority', [
 			'none',
 			'low',

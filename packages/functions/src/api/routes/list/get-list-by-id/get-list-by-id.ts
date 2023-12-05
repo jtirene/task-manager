@@ -1,9 +1,9 @@
 import { TRPCError } from '@trpc/server'
 import { eq } from 'drizzle-orm'
-import { Lists } from '../../../../../core/src/entities/list.sql.js'
-import { db } from '../../../../../core/src/util/db.js'
-import { GetListByIdInput } from '../../input/list/get-list-by-id-input.js'
-import { UserProcedure } from '../../procedure/user-procedure.js'
+import { Lists } from '../../../../../../core/src/entities/list.sql.js'
+import { db } from '../../../../../../core/src/util/db.js'
+import { UserProcedure } from '../../../procedure/user-procedure.js'
+import { GetListByIdInput } from './get-list-by-id-input.js'
 
 export const GetListById = UserProcedure.input(GetListByIdInput).query(
 	async ({

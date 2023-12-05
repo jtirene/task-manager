@@ -3,7 +3,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { CreateListInput } from '../../../../../functions/src/api/input/list/create-list-input'
+import { CreateListInput } from '../../../../../functions/src/api/routes/list/create-list/create-list-input'
 import { Button } from '../../../components/ui/button'
 import {
 	Form,

@@ -1,9 +1,9 @@
 import { TRPCError } from '@trpc/server'
 import { eq } from 'drizzle-orm'
-import { Lists } from '../../../../../core/src/entities/list.sql.js'
-import { db } from '../../../../../core/src/util/db.js'
-import { UpdateListInput } from '../../input/list/update-list-input.js'
-import { UserProcedure } from '../../procedure/user-procedure.js'
+import { Lists } from '../../../../../../core/src/entities/list.sql.js'
+import { db } from '../../../../../../core/src/util/db.js'
+import { UserProcedure } from '../../../procedure/user-procedure.js'
+import { UpdateListInput } from './update-list-input.js'
 
 export const UpdateList = UserProcedure.input(UpdateListInput).mutation(
 	async ({

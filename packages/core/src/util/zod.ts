@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const id = () => z.string().cuid2()
+export const id = z.string().cuid2()
 
 export function validate<
 	Schema extends z.ZodSchema<any, any, any>,
