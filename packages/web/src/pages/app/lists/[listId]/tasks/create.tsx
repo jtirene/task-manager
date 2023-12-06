@@ -30,7 +30,6 @@ type CreateTaskForm = {
 
 function CreateTaskForm({ listId }: CreateTaskForm) {
 	const navigate = useNavigate()
-	const trpcUtils = trpc.useUtils()
 
 	const { mutate, isLoading, isError, error } = trpc.CreateTask.useMutation()
 
@@ -54,7 +53,6 @@ function CreateTaskForm({ listId }: CreateTaskForm) {
 			},
 			{
 				onSuccess: () => {
-					trpcUtils.GetTasksForList.invalidate()
 					navigate(`/app/lists/:listId`, {
 						params: {
 							listId,
@@ -64,8 +62,6 @@ function CreateTaskForm({ listId }: CreateTaskForm) {
 			},
 		)
 	}
-
-	console.log(form.formState.errors)
 
 	return (
 		<Form {...form}>
@@ -95,11 +91,6 @@ function CreateTaskForm({ listId }: CreateTaskForm) {
 					)}
 				</Button>
 			</form>
-			{form.getFieldState('title').error ? (
-				<div className="text-red-500">
-					{form.getFieldState('title').error?.message}
-				</div>
-			) : null}
 			{isError ? <div>Error: {error.message}</div> : null}
 		</Form>
 	)

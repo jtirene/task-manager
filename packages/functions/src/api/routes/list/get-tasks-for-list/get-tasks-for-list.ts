@@ -15,7 +15,9 @@ export const GetTasksForList = UserProcedure.input(GetTasksForListInput).query(
 		const list = await db.query.Lists.findFirst({
 			where: eq(Lists.listId, listId),
 			with: {
-				tasks: true,
+				tasks: {
+					orderBy: (tasks, { desc }) => [desc(tasks.dateCreated)],
+				},
 			},
 		})
 

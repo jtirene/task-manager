@@ -10,6 +10,7 @@ import { CreateProfile } from './profile/create-profile'
 import { GetCurrentUserProfile } from './profile/get-current-user-profile'
 import { CreateTask } from './task/create-task/create-task'
 import { DeleteTask } from './task/delete-task/delete-task'
+import { GetAllTasksForCurrentUser } from './task/get-all-tasks-for-current-user'
 import { UpdateTask } from './task/update-task/update-task'
 
 export type AppRouter = typeof AppRouter
@@ -17,16 +18,15 @@ export type AppRouterOutputs = inferRouterOutputs<AppRouter>
 
 export const AppRouter = trpc.router({
 	CreateList,
+	CreateProfile,
+	CreateTask,
 	DeleteList,
+	DeleteTask,
+	GetAllTasksForCurrentUser,
+	GetCurrentUserProfile,
 	GetListById,
 	GetListsForCurrentUser,
 	GetTasksForList,
 	UpdateList,
-
-	CreateTask,
-	DeleteTask,
 	UpdateTask,
-
-	CreateProfile,
-	GetCurrentUserProfile,
 })

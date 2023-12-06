@@ -20,6 +20,11 @@ export const TRPCProvider = ({ children }: TRPCProvider) => {
 						refetchOnWindowFocus: false,
 						staleTime: 1000 * 60 * 5,
 					},
+					mutations: {
+						onSuccess: () => {
+							queryClient.invalidateQueries()
+						},
+					},
 				},
 			}),
 	)

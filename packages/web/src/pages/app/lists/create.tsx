@@ -24,7 +24,6 @@ const FormSchema = CreateListInput.omit({
 
 const CreateListForm = () => {
 	const navigate = useNavigate()
-	const trpcUtils = trpc.useUtils()
 
 	const { mutate, isLoading } = trpc.CreateList.useMutation()
 
@@ -44,7 +43,6 @@ const CreateListForm = () => {
 			},
 			{
 				onSuccess: () => {
-					trpcUtils.GetListsForCurrentUser.invalidate()
 					navigate(`/app/lists/:listId`, {
 						params: {
 							listId,
