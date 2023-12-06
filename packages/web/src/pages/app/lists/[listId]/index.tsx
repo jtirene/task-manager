@@ -10,10 +10,10 @@ import {
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { Loader2, Trash } from 'lucide-react'
+import { Loader2, Plus, Trash } from 'lucide-react'
 import { useState } from 'react'
-import { useNavigate, useParams } from '../../../router'
-import { trpc } from '../../../util/trpc'
+import { Link, useNavigate, useParams } from '../../../../router'
+import { trpc } from '../../../../util/trpc'
 
 type DeleteTaskList = {
 	listId: string
@@ -81,8 +81,42 @@ const DeleteTaskList = ({ listId, listName }: DeleteTaskList) => {
 	)
 }
 
+type Tasks = {
+	listId: string
+}
+
+function Tasks({ listId }: Tasks) {
+	const { isLoading, isError, error, data } = trpc.GetTasksForList.useQuery({
+		listId,
+	})
+
+	if (isLoading) return <div>Loading...</div>
+	if (isError) return <div>Error: {error.message}</div>
+
+	return (
+		<div className="flex flex-col gap-8">
+			<div className="flex items-center gap-2">
+				<div>Tasks</div>
+				<Link
+					to="/app/lists/:listId/tasks/create"
+					params={{
+						listId,
+					}}
+				>
+					<Plus />
+				</Link>
+			</div>
+			{data.length ? (
+				data.map((task) => <div key={task.taskId}>{task.title}</div>)
+			) : (
+				<div>No tasks</div>
+			)}
+		</div>
+	)
+}
+
 export default function Page() {
-	const { listId } = useParams('/app/task-lists/:listId')
+	const { listId } = useParams('/app/lists/:listId')
 	const { isLoading, isError, error, data } = trpc.GetListById.useQuery({
 		listId,
 	})
@@ -92,8 +126,11 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col gap-8">
-			<div>{data.name}</div>
-			<DeleteTaskList listId={listId} listName={data.name} />
+			<div className="flex items-center gap-8">
+				<div>{data.name}</div>
+				<DeleteTaskList listId={listId} listName={data.name} />
+			</div>
+			<Tasks listId={listId} />
 		</div>
 	)
 }

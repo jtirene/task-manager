@@ -67,7 +67,7 @@ const TaskLists = () => {
 		<div className="flex flex-col gap-6 pl-2 text-lg">
 			<div className="flex items-center gap-4">
 				<div className="font-bold">My Lists</div>
-				<Link to="/app/task-lists/create">
+				<Link to="/app/lists/create">
 					<Plus />
 				</Link>
 			</div>
@@ -76,7 +76,7 @@ const TaskLists = () => {
 			) : (
 				data?.map((taskList) => (
 					<Link
-						to="/app/task-lists/:listId"
+						to="/app/lists/:listId"
 						params={{ listId: taskList.listId }}
 						key={taskList.listId}
 					>

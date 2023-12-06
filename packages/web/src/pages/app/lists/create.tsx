@@ -22,7 +22,7 @@ const FormSchema = CreateListInput.omit({
 	listId: true,
 })
 
-const CreateTaskListForm = () => {
+const CreateListForm = () => {
 	const navigate = useNavigate()
 	const trpcUtils = trpc.useUtils()
 
@@ -45,7 +45,7 @@ const CreateTaskListForm = () => {
 			{
 				onSuccess: () => {
 					trpcUtils.GetListsForCurrentUser.invalidate()
-					navigate(`/app/task-lists/:listId`, {
+					navigate(`/app/lists/:listId`, {
 						params: {
 							listId,
 						},
@@ -77,10 +77,10 @@ const CreateTaskListForm = () => {
 							<span className="animate-spin">
 								<Loader2 />
 							</span>
-							<span>Submitting...</span>
+							<span>Creating...</span>
 						</div>
 					) : (
-						<span>Submit</span>
+						<span>Create</span>
 					)}
 				</Button>
 			</form>
@@ -92,7 +92,7 @@ export default function Page() {
 	return (
 		<div className="max-w-[800px] flex flex-col gap-8">
 			<h2 className="text-xl">New Task List</h2>
-			<CreateTaskListForm />
+			<CreateListForm />
 		</div>
 	)
 }

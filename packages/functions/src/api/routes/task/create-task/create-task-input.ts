@@ -7,23 +7,49 @@ import {
 } from '../../../../../../core/src/entities/task/task'
 import { id } from '../../../../../../core/src/util/zod'
 
-export const CreateTaskInput = z
-	.object({
-		taskId: id,
-		listId: id,
-		title: z.string().max(TASK_TITLE_MAX_LENGTH),
-		description: z.string().max(TASK_DESCRIPTION_MAX_LENGTH).optional(),
-		priority: z.enum(TASK_PRIORITY_OPTIONS),
-		dateStart: z.date(),
-		dateEnd: z.date(),
-		recurrenceRule: z.string().max(TASK_RECURRENCE_RULE_MAX_LENGTH).optional(),
-		dateRecurrenceEnd: z.date().optional(),
-	})
+export const CreateTaskInput = z.object({
+	taskId: id,
+	listId: id,
+	title: z.string().max(TASK_TITLE_MAX_LENGTH),
+	description: z.string().max(TASK_DESCRIPTION_MAX_LENGTH).optional(),
+	priority: z.enum(TASK_PRIORITY_OPTIONS),
+	dateStart: z.date().optional(),
+	dateEnd: z.date().optional(),
+	recurrenceRule: z.string().max(TASK_RECURRENCE_RULE_MAX_LENGTH).optional(),
+	dateRecurrenceEnd: z.date().optional(),
+})
+/*
+	TODO
 	.refine(
-		(schema) =>
-			(schema.recurrenceRule && schema.dateRecurrenceEnd) ||
-			(!schema.recurrenceRule && !schema.dateRecurrenceEnd),
+		(schema) => {
+			if (schema.dateStart || schema.dateEnd)
+				return (
+					schema.dateStart &&
+					schema.dateEnd &&
+					schema.dateStart <= schema.dateEnd
+				)
+			else return true
+		},
 		{
-			message: 'Recurring events require a recurrence end date to be specified',
+			message: 'Scheduled events must have a valid start and end date',
 		},
 	)
+	.refine(
+		(schema) => {
+			if (schema.recurrenceRule || schema.dateRecurrenceEnd)
+				return (
+					schema.recurrenceRule &&
+					schema.dateRecurrenceEnd &&
+					schema.dateStart &&
+					schema.dateEnd &&
+					schema.dateStart <= schema.dateEnd &&
+					schema.dateRecurrenceEnd >= schema.dateStart
+				)
+			else return true
+		},
+		{
+			message:
+				'Recurring events must have a valid start date, end date, recurrence rule, and recurrence end date',
+		},
+	)
+	*/

@@ -41,8 +41,8 @@ export const Tasks = mysqlTable(
 		]).notNull(),
 
 		// iCalendar fields
-		dateStart: datetime('date_start').notNull(),
-		dateEnd: datetime('date_end').notNull(),
+		dateStart: datetime('date_start'),
+		dateEnd: datetime('date_end'),
 		recurrenceRule: varchar('recurrence_rule', {
 			length: TASK_RECURRENCE_RULE_MAX_LENGTH,
 		}),

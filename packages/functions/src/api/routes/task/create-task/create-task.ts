@@ -6,7 +6,7 @@ import { db } from '../../../../../../core/src/util/db'
 import { UserProcedure } from '../../../procedure/user-procedure'
 import { CreateTaskInput } from './create-task-input'
 
-export const CreateTask = UserProcedure.input(CreateTaskInput).query(
+export const CreateTask = UserProcedure.input(CreateTaskInput).mutation(
 	async ({
 		ctx: {
 			user: { id },
